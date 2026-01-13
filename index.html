@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday 🎉</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Trebuchet MS","Segoe UI",sans-serif;}
+body{
+  overflow:hidden;
+  background:#0a0a0a;
+  color:#fff;
+  position:relative;
+  font-size:16px;
+}
+
+/* Star background */
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  opacity:0.8;
+  animation:twinkle 2s infinite alternate, fall linear infinite;
+}
+@keyframes twinkle{
+  0%{opacity:0.3;}
+  50%{opacity:1;}
+  100%{opacity:0.3;}
+}
+@keyframes fall{
+  0%{transform:translateY(0);}
+  100%{transform:translateY(100vh);}
+}
+
+/* Pages */
+.page{
+  width:100vw;height:100vh;
+  display:none;justify-content:center;align-items:center;
+  flex-direction:column;text-align:center;position:relative;padding:10px;
+}
+.page.active{display:flex;animation:fadeIn 0.8s ease;}
+@keyframes fadeIn{from{opacity:0;transform:scale(0.95);}to{opacity:1;transform:scale(1);}}
+
+/* Text */
+h1{font-size:2.5rem;margin-bottom:15px;text-align:center;}
+h2{margin-bottom:15px;}
+p{font-size:1rem;max-width:650px;line-height:1.6;text-align:center;}
+
+/* Button */
+button{
+  margin-top:20px;padding:10px 30px;border:none;border-radius:30px;
+  font-size:1rem;cursor:pointer;background:linear-gradient(135deg,#ff4b5c,#ff1e38);
+  color:white;transition:0.3s;
+}
+button:hover{transform:scale(1.08);box-shadow:0 0 15px rgba(255,75,92,0.6);}
+
+/* Card */
+.card{
+  background:rgba(255,255,255,0.08);backdrop-filter:blur(12px);
+  padding:25px;border-radius:20px;
+  box-shadow:0 0 30px rgb(238, 234, 235);
+  animation:slideUp 1s ease;
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+
+/* PHOTO CARD */
+.photo-card{
+  width:90%;
+  max-width:360px;
+  aspect-ratio: 3 / 4;
+  border-radius:15px;
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  background-color:rgba(0,0,0,0.3);
+  box-shadow:0 0 30px rgba(255,255,255,0.4);
+  transition:opacity 0.6s ease;
+  margin:20px 0;
+}
+
+/* Messages Page */
+#messagePage h1{position:relative;z-index:2;}
+.message{
+  position:absolute;font-size:1.3rem;font-weight:bold;color:#ffd700;
+  opacity:0;transform:translateY(0) scale(0.5);transition:all 0.8s ease;
+  z-index:1;text-shadow:1px 1px 5px #ffb400;pointer-events:none;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(0.6);opacity:0;}
+  50%{opacity:1;}
+  100%{transform:translateY(-80px) scale(1);opacity:1;}
+}
+
+/* Cake */
+.cake{font-size:120px;position:relative;margin:20px 0;animation:pulse 2s infinite;}
+@keyframes pulse{0%{transform:scale(1);}50%{transform:scale(1.03);}100%{transform:scale(1);}}
+
+/* Hanging Stylish Chain Banner */
+.chain{
+  position:absolute;top:20px;left:50%;transform:translateX(-50%);
+  display:flex;gap:15px;justify-content:center;
+  z-index:5;
+}
+.chain span{
+  display:inline-block;
+  position:relative;
+  font-size:3rem;
+  font-weight:bold;
+  color:#ff1e38;
+  text-shadow: 2px 2px 8px rgba(255,255,255,0.5);
+  animation: swing 2s ease-in-out infinite alternate;
+  transform-origin: top center;
+}
+.chain span::after{
+  content:'';position:absolute;width:3px;height:25px;background:#fff;
+  top:-25px;left:50%;transform:translateX(-50%);
+  border-radius:1px;opacity:0.8;
+}
+.chain span:nth-child(even){animation-delay:0.3s;}
+@keyframes swing{
+  0%{transform:rotate(-12deg);}
+  50%{transform:rotate(12deg);}
+  100%{transform:rotate(-12deg);}
+}
+
+/* Blaster confetti */
+.confetti{
+  position:absolute;width:10px;height:10px;border-radius:50%;
+  opacity:0.9;
+  animation:blast 2s forwards;
+}
+@keyframes blast{
+  0%{transform:translate(0,0) scale(0);}
+  30%{opacity:1;scale:1;}
+  100%{transform:translate(var(--x), var(--y)) scale(1);}
+}
+
+/* Responsive */
+@media(max-width:600px){
+  h1{font-size:1.8rem;}
+  .cake{font-size:100px;}
+  button{padding:8px 20px;font-size:0.9rem;}
+  .message{font-size:1rem;}
+}
+</style>
+</head>
+<body>
+
+<div id="starsContainer"></div>
+
+<!-- PAGE 1 -->
+<div class="page active">
+  <p>"Goodbye teens, Hello twenties!"</p>
+  <h1>It's Official Now!! <br> Rakshith Turns 20!!!!</h1>
+  <h2>🎉 Wishing You a Very Happy Birthday 🎉</h2>
+  <button onclick="nextPage()">Start🎂</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+  <div class="card">
+    <h1>19 + 1 ---- Welcome to 20 ✨</h1>
+    <h2>You are not old<br>You are a limited edition, always💖</h2>
+    <p>
+      Twenty marks the beginning of a beautiful new chapter.
+      Carry forward your memories, lessons, and dreams —
+      the best is yet to come!🌟<br>
+      Yeah... Another year & another chapter in the story of YOU.✨<br>
+      Have a bright future ahead! You deserve all the joy, love and everything this world can offer.💯<br>
+      May this year and the days ahead bring you the adventures, good moments, full of success and happiness!!💫<br>
+      May the god bless you with only the best..!!<br>.<br>.<br>.<br>
+      Personally I'm very grateful to have you as a friend...💯🤍! I Thank you for being there for me by my side whenever I feel to share things! Honestly, I will always be grateful for this friendship!!💯
+    </p>
+  </div>
+  <button onclick="nextPage()">Go ahead✨</button>
+</div>
+
+<!-- PAGE 3 – PHOTO CARD -->
+<div class="page" id="photoPage">
+  <h1>It's you!!💫</h1>
+  <div class="photo-card" id="photoCard" style="background-image:url('photo1.jpg');"></div>
+  <button id="flipBtn" onclick="nextPhoto()">Wanna see next photo-->📸</button>
+</div>
+
+<!-- PAGE 4 – MESSAGES PAGE -->
+<div class="page" id="messagePage">
+  <h1 id="messageTitle">By Heart💛</h1>
+</div>
+
+<!-- PAGE 5 – CAKE -->
+<div class="page" id="cakePage">
+  <h1>Make a pleasant Wish!✨</h1>
+  <p>Blast the cake and let your wishes rise…!!</p>
+  <div class="cake" id="cakeDiv">🎂</div>
+  <button onclick="blowCandles()">Blast it->💨</button>
+</div>
+
+<!-- PAGE 6 – FINAL -->
+<div class="page">
+  <h1>Once Again…</h1>
+  <p>
+    Happy 20th Birthday, Rakshith!💖  
+    May this decade bring confidence, courage,
+    happiness, and success in everything you do!🌟
+  </p>
+  <h2 style="margin-top:20px;font-weight:normal;">Heartful wishes and prayers,,,always <br> —From your friend…</h2>
+</div>
+
+<script>
+let pages=document.querySelectorAll(".page");
+let index=0;
+function nextPage(){
+  pages[index].classList.remove("active");
+  index++;
+  pages[index].classList.add("active");
+}
+
+/* PHOTO LOGIC — UPDATED */
+const photos=['photo1.jpg','photo2.jpg','photo05.jpg','photo04.jpg','photo001.jpg'];
+let currentPhoto=0;
+const photoCard=document.getElementById("photoCard");
+
+function nextPhoto(){
+  photoCard.style.opacity=0;
+  setTimeout(()=>{
+    currentPhoto++;
+    if(currentPhoto < photos.length){
+      photoCard.style.backgroundImage=`url('${photos[currentPhoto]}')`;
+      photoCard.style.opacity=1;
+      
+      // AUTO NEXT PAGE after last photo
+      if(currentPhoto === photos.length - 1){
+        setTimeout(showMessagePage,800); // directly move to Messages page
+      }
+    }
+  },400);
+}
+
+/* Messages */
+let statements=[
+  "Forever Thanksful!","Grateful for you!","You deserve the best!",
+  "You make everything better!","Always Loyal!","Keep shining!",
+  "And you always the best!","Be the same how you are!","Thank you for being there!"
+];
+
+function showMessagePage(){
+  nextPage();
+  const msgPage=document.getElementById("messagePage");
+  const title=document.getElementById("messageTitle");
+  const rect=title.getBoundingClientRect();
+
+  const positions=[
+    {x:200,y:200,rotate:-15},{x:-250,y:160,rotate:10},{x:-320,y:30,rotate:20},
+    {x:-150,y:-50,rotate:-10},{x:0,y:150,rotate:5},{x:-390,y:-30,rotate:-5},
+    {x:160,y:-120,rotate:15},{x:80,y:0,rotate:-12},{x:-300,y:220,rotate:8}
+  ];
+
+  let i=0;
+  function showNext(){
+    if(i>=statements.length){setTimeout(nextPage,1500);return;}
+    const m=document.createElement("div");
+    m.className="message";
+    m.innerText=statements[i];
+    const p=positions[i];
+    m.style.left=(rect.left+rect.width/2+p.x)+"px";
+    m.style.top=(rect.top+rect.height/2+p.y)+"px";
+    m.style.transform=`scale(0.5) rotate(${p.rotate}deg)`;
+    msgPage.appendChild(m);
+    setTimeout(()=>m.style.animation="floatUp 1.5s forwards",50);
+    i++; setTimeout(showNext,700);
+  }
+  showNext();
+}
+
+/* Cake + confetti unchanged */
+function blowCandles(){
+  const chainText="HAPPY BIRTHDAY";
+  const chain=document.createElement("div");
+  chain.className="chain";
+  for(let c of chainText){const s=document.createElement("span");s.innerText=c;chain.appendChild(s);}
+  document.body.appendChild(chain);
+
+  for(let i=0;i<80;i++){
+    setTimeout(()=>{
+      const c=document.createElement("div");
+      c.className="confetti";
+      const a=Math.random()*2*Math.PI,r=Math.random()*250+100;
+      c.style.setProperty('--x',Math.cos(a)*r+'px');
+      c.style.setProperty('--y',Math.sin(a)*r-150+'px');
+      c.style.left=innerWidth/2+'px';
+      c.style.top=innerHeight/2+'px';
+      c.style.background=`hsl(${Math.random()*360},100%,60%)`;
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(),2500);
+    },i*30);
+  }
+  setTimeout(nextPage,3000);
+}
+
+/* Stars */
+const stars=document.getElementById("starsContainer");
+for(let i=0;i<150;i++){
+  const s=document.createElement("div");
+  s.className="star";
+  s.style.top=Math.random()*innerHeight+"px";
+  s.style.left=Math.random()*innerWidth+"px";
+  const d=5+Math.random()*5;
+  s.style.animationDuration=`${d}s,${2+Math.random()*2}s`;
+  stars.appendChild(s);
+}
+</script>
+</body>
+</html>
